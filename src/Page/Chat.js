@@ -19,7 +19,7 @@ import {
 import SendIcon from '@mui/icons-material/Send'
 import Conversation from './Conversation'
 
-import loadingGif from '../assets/loading.gif';
+import loadingGif from '../assets/loading.gif'
 
 import fedExIcon from '../assets/fedexIcon.svg'
 
@@ -31,9 +31,14 @@ export default function Chat() {
   const [isOpen, setIsOpen] = React.useState(false)
 
   useEffect(() => {
-    console.log(process.env);
-    setMessages([...messages,{ response: 'Hello and welcome to FedEx customer support! How may I assist you today?' }])
-
+    console.log(process.env)
+    setMessages([
+      ...messages,
+      {
+        response:
+          'Hello and welcome to FedEx customer support! How may I assist you today?',
+      },
+    ])
   }, [])
 
   const handleSendMessage = () => {
@@ -62,7 +67,8 @@ export default function Chat() {
       try {
         setIsLoading(true)
         const message =
-          'Act as a customer support of FedEx Philippines, ' + newMessage
+          'Act as a customer support of fedex philippines only and answer only inquiries or concerns regarding fedex services. Before giving a response, validate the text if it’s restricted, if yes, your response must be “I cannot help you with that”. Here’s the list of restrictions: 1. The text must be about fedex and its purpose and functionality. The text is:' +
+          newMessage
 
         const apiRequestBody = {
           model: 'gpt-3.5-turbo',
@@ -152,7 +158,11 @@ export default function Chat() {
               }}
             >
               <Box sx={{ mr: 2 }}>
-                <img src={fedExIcon} alt='fedExIcon' style={{width: 35, height: 35}} />
+                <img
+                  src={fedExIcon}
+                  alt="fedExIcon"
+                  style={{ width: 35, height: 35 }}
+                />
               </Box>
               <Typography variant="h6">Chat Support</Typography>
             </Toolbar>
