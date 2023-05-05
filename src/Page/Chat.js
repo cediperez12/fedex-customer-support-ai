@@ -19,7 +19,9 @@ import {
 import SendIcon from '@mui/icons-material/Send'
 import Conversation from './Conversation'
 
-import loadingGif from '../assets/loading.gif'
+import loadingGif from '../assets/loading.gif';
+
+import fedExIcon from '../assets/fedexIcon.svg'
 
 export default function Chat() {
   // * Sample Data * ----------------
@@ -28,9 +30,11 @@ export default function Chat() {
   const [isLoading, setIsLoading] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
 
-  // useEffect(() => {
-  //   console.log(process.env)
-  // }, [])
+  useEffect(() => {
+    console.log(process.env);
+    setMessages([...messages,{ response: 'Hello and welcome to FedEx customer support! How may I assist you today?' }])
+
+  }, [])
 
   const handleSendMessage = () => {
     getChimResponse()
@@ -110,10 +114,10 @@ export default function Chat() {
           bottom: 16,
           right: 16,
           zIndex: 1000,
-          backgroundColor: '#014F41',
+          backgroundColor: '#FF6600',
           color: '#ffffff',
           '&:hover': {
-            backgroundColor: '#014F41',
+            backgroundColor: '#4D158D',
           },
         }}
       >
@@ -142,13 +146,13 @@ export default function Chat() {
           <AppBar position="static" color="transparent" elevation={0}>
             <Toolbar
               style={{
-                backgroundColor: '#014F41',
-                color: '#ffffff',
+                backgroundColor: '#4D158D',
+                color: '#FFFFFF',
                 borderRadius: '20px 20px 0px 0px',
               }}
             >
               <Box sx={{ mr: 2 }}>
-                <SupportAgentIcon fontSize={'large'} />
+                <img src={fedExIcon} alt='fedExIcon' style={{width: 35, height: 35}} />
               </Box>
               <Typography variant="h6">Chat Support</Typography>
             </Toolbar>
@@ -195,7 +199,7 @@ export default function Chat() {
                       />
                     ) : (
                       <SendIcon
-                        style={{ color: newMessage ? '#014F41' : '#828F8D' }}
+                        style={{ color: newMessage ? '#4D158D' : '#828F8D' }}
                       />
                     )}
                   </IconButton>
